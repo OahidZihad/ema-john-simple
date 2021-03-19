@@ -1,0 +1,25 @@
+.order-summary,
+.items-ordered {
+  text-align: center;
+}
+td {
+  padding-right: 30px;
+}
+.total-row {
+  color: firebrick;
+  font-size: 17px;
+  font-weight: 700;
+}
+.review-button {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  margin-left: 20px;
+  margin-top: 5px;
+  background-color: #f0c14b;
+  width: 200px;
+  height: 26px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  cursor: pointer;
+}
