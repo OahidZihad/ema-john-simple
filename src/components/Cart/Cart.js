@@ -34,7 +34,7 @@ const Cart = (props) => {
 
     return (
         <div class="cart">
-            <h3 className="order-summary">Order Summary</h3>
+            <h3 className="order-summary text-primary">Order Summary</h3>
             <p className="items-ordered">Items ordered: {props.cart.length}</p>
             <table>
                 <tbody>
