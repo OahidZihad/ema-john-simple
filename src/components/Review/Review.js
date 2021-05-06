@@ -3,12 +3,21 @@ import fakeData from "../../fakeData";
 import {
   getDatabaseCart,
   removeFromDatabaseCart,
+  processOrder,
 } from "../../utilities/databaseManager";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import Cart from "../Cart/Cart";
+import happyImage from "../../images/giphy.gif";
 
 const Review = () => {
   const [cart, setCart] = useState([]);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+  const handlePlaceOrder = () => {
+    setCart([]);
+    setOrderPlaced(true);
+    processOrder();
+  };
 
   const removeProduct = (productKey) => {
     const newCart = cart.filter((pd) => pd.key !== productKey);
@@ -27,6 +36,11 @@ const Review = () => {
     });
     setCart(cartProducts);
   }, []);
+
+  let thankYou;
+  if (orderPlaced) {
+    thankYou = <img src={happyImage} alt="" />;
+  }
   return (
     <div className="twin-container">
       {/* <h1>Cart Items: {cart.length}</h1> */}
@@ -38,9 +52,15 @@ const Review = () => {
             product={pd}
           ></ReviewItem>
         ))}
+
+        {thankYou}
       </div>
       <div className="cart-container">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart}>
+          <button className="main-button" onClick={handlePlaceOrder}>
+            Place Order
+          </button>
+        </Cart>
       </div>
     </div>
   );
