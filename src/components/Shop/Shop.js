@@ -19,7 +19,7 @@ const Shop = () => {
   };
 
   return (
-    <div className="shop-container">
+    <div className="twin-container">
       <div className="product-container">
         {products.map((pd) => (
           <Product
@@ -30,7 +30,7 @@ const Shop = () => {
           ></Product>
         ))}
       </div>
-      <div className="cart-cont">
+      <div className="cart-container">
         <Cart cart={cart}></Cart>
       </div>
     </div>
