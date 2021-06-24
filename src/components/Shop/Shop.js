@@ -7,7 +7,7 @@ import {
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 
 const Shop = () => {
   const first10 = fakeData.slice(0, 10);
