@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../App";
 import { useHistory, useLocation } from "react-router-dom";
 import {
+  createUserWithEmailAndPassword,
   handleFbSignIn,
   handleGoogleSignIn,
   handleSignOut,
   initializeLoginFramework,
+  signInWithEmailAndPassword,
 } from "./loginManager";
 
 function Login() {
@@ -28,24 +30,28 @@ function Login() {
 
   const googleSignIn = () => {
     handleGoogleSignIn().then((res) => {
-      setUser(res);
-      setLoggedInUser(res);
-      history.replace(from);
+      handleResponse(res, true);
     });
   };
 
   const signOut = () => {
     handleSignOut().then((res) => {
-      setUser(res);
-      setLoggedInUser(res);
+      handleResponse(res, false);
     });
   };
 
   const fbSignIn = () => {
     handleFbSignIn().then((res) => {
-      setUser(res);
-      setLoggedInUser(res);
+      handleResponse(res, true);
     });
+  };
+
+  const handleResponse = (res, redirect) => {
+    setUser(res);
+    setLoggedInUser(res);
+    if (redirect) {
+      history.replace(from);
+    }
   };
 
   const handleBlur = (event) => {
@@ -66,11 +72,18 @@ function Login() {
   };
 
   const handleSubmit = (event) => {
-    console.log(user.email, user.password);
     if (newUser && user.email && user.password) {
+      createUserWithEmailAndPassword(user.name, user.email, user.password).then(
+        (res) => {
+          handleResponse(res, true);
+        }
+      );
     }
 
     if (!newUser && user.email && user.password) {
+      signInWithEmailAndPassword(user.email, user.password).then((res) => {
+        handleResponse(res, true);
+      });
     }
     event.preventDefault(); // submit korar por page reload hoy...
     // sei reload k bondho kortei preventDefault() function use kora hoy
