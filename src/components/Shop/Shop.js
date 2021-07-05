@@ -43,9 +43,12 @@ const Shop = () => {
     addToDatabaseCart(product.key, count);
   };
 
+  document.title = "Shop More";
   return (
     <div className="twin-container">
       <div className="product-container">
+        {products.length === 0 && <p>loading....</p>}
+
         {products.map((pd) => (
           <Product
             key={pd.key}

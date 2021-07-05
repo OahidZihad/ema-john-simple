@@ -41,6 +41,9 @@ const Review = () => {
   if (orderPlaced) {
     thankYou = <img src={happyImage} alt="" />;
   }
+
+  document.title = "Order Review";
+
   return (
     <div className="twin-container">
       {/* <h1>Cart Items: {cart.length}</h1> */}
