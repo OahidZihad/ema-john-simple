@@ -7,16 +7,20 @@ const ProductDetail = () => {
   const { productKey } = useParams();
   // const [loading, setLoading] = useState(true);
   const product = fakeData.find((pd) => pd.key === productKey);
-  // setLoading(false);
 
   // const [product, setProduct] = useState({});
 
   // useEffect(() => {
-  //   fetch("/product/" + productKey)
+  //   fetch(`/product/` + productKey, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(fakeData),
+  //   })
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setProduct(data);
-  //       setLoading(false);
+  //       console.log(data);
   //     });
   // }, [productKey]);
 
