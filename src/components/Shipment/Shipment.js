@@ -20,7 +20,7 @@ const Shipment = () => {
       shipment: data,
       orderTime: new Date(),
     };
-    fetch("http://localhost:4000/addOrder", {
+    fetch("https://peaceful-meadow-14323.herokuapp.com/addOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
