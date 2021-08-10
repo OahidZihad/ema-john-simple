@@ -24,11 +24,25 @@ export const handleGoogleSignIn = () => {
         photo: photoURL,
         success: true,
       };
+      // sessionStorage.setItem("token", signedInUser.user);
+      setUserToken();
       return signedInUser;
     })
     .catch((err) => {
       console.log(err);
       console.log(err.message);
+    });
+};
+
+const setUserToken = () => {
+  firebase
+    .auth()
+    .currentUser.getIdToken(/* forceRefresh */ true)
+    .then(function (idToken) {
+      sessionStorage.setItem("token", idToken);
+    })
+    .catch(function (error) {
+      // Handle error
     });
 };
 
