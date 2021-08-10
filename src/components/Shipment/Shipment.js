@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../App";
 import { getDatabaseCart, processOrder } from "../../utilities/databaseManager";
@@ -13,12 +13,20 @@ const Shipment = () => {
     formState: { errors },
   } = useForm();
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  const [shippingData, setShippingData] = useState(null);
+
   const onSubmit = (data) => {
+    setShippingData(data);
+  };
+
+  const handlePaymentSuccess = (paymentId) => {
     const savedCart = getDatabaseCart();
     const orderDetails = {
       ...loggedInUser,
       products: savedCart,
-      shipment: data,
+      shipment: shippingData,
+      paymentId,
       orderTime: new Date(),
     };
     fetch("https://peaceful-meadow-14323.herokuapp.com/addOrder", {
@@ -42,7 +50,10 @@ const Shipment = () => {
 
   return (
     <div className="row">
-      <div className="col-md-6">
+      <div
+        style={{ display: shippingData ? "none" : "block" }}
+        className="col-md-6"
+      >
         <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
           <input
             defaultValue={loggedInUser.name}
@@ -76,9 +87,12 @@ const Shipment = () => {
           <input type="submit" />
         </form>
       </div>
-      <div className="col-md-6">
+      <div
+        style={{ display: shippingData ? "block" : "none" }}
+        className="col-md-6"
+      >
         <h2>Plase Pay....</h2>
-        <ProcessPayment></ProcessPayment>
+        <ProcessPayment handlePayment={handlePaymentSuccess}></ProcessPayment>
       </div>
     </div>
   );
