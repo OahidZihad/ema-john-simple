@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap");
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.section-title {
+  background-image: url("https://phitron.io/static/media/title-arrow.03d87589.svg");
+  background-repeat: no-repeat;
+  background-position: 100%;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Hind Siliguri";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  color: #000;
+}
+.card-container {
+  display: grid;
+  justify-items: center;
+  grid-gap: 20px;
+  gap: 20px;
+  grid-template-areas:
+    ". a ."
+    "b a c"
+    "b g c"
+    "d g e"
+    "d f e"
+    ". f .";
+  grid-template-columns: repeat(3, 1fr);
+}
+.info-card {
+  max-width: 500px;
+  width: 100%;
+  font-family: "Hind Siliguri", sans-serif;
+}
+.info-card h3 {
+  font-size: 21px;
+  margin: 20px 0 15px;
+  font-weight: 700;
+  color: #343c97;
+}
+.info-card p {
+  font-size: 15px;
+  color: #696984;
+  font-weight: 500;
+  text-align: justify;
+}
+.card-1 {
+  grid-area: a;
+}
+.card-2 {
+  grid-area: b;
+}
+.card-3 {
+  grid-area: c;
+}
+.card-4 {
+  grid-area: d;
+}
+.card-5 {
+  grid-area: e;
+}
+.card-6 {
+  grid-area: f;
+}
+.card-7 {
+  grid-area: g;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .card-container {
+    grid-template-areas:
+      "a a"
+      "b c"
+      "g g"
+      "d e"
+      "f f";
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-areas:
+      "g"
+      "a"
+      "b"
+      "c"
+      "d"
+      "e"
+      "f";
+    grid-template-columns: 1fr;
+  }
+}
